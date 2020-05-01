@@ -116,5 +116,33 @@ router.post('/createUser', function(req, res) {
 
 })
 
+router.get('/staff', function(req, res) {
+
+  let cookie = req.cookies.verify;
+  let user = [];
+
+  if (cookie == undefined || cookie == null) {
+    res.render('pages/index');
+  } else {
+    db.each("SELECT * FROM accounts WHERE password=?", [cookie], (error, data) => {
+      if (error) throw error;
+
+      user.push(data.username, data.rank);
+    }, () => {
+      if (user == '') {
+        res.render('pages/index');
+      }
+
+      if (user[1].toLowerCase() !== "executive") {
+        res.render('pages/index')
+      }
+
+      res.render('pages/staff');
+
+    })
+  }
+
+});
+
 
 module.exports = router
