@@ -32,5 +32,27 @@ router.get('/', function(req, res) {
   res.send('api is up');
 })
 
+router.get('/tasks/:rank?', function(req, res) {
+  let rank = req.params.rank;
+  let tasks = [];
+
+  db.each("SELECT * FROM tasks WHERE rank=?", [rank], (error, task) => {
+    if (error) throw error;
+
+    tasks.push([task.name, task.status]);
+  }, () => {
+    res.send(tasks);
+  })
+
+})
+
+router.get('/tasks/create/:name?/:rank?', function(req, res) {
+  let name = req.parmas.name;
+  let rank = req.parmas.rank;
+
+  db.run("INSERT INTO tasks (rank, status, name) VALUES (?, ?, ?)", [name, 0, rank]);
+
+  res.sendStatus(1000);
+})
 
 module.exports = router

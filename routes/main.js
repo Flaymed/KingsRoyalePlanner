@@ -28,6 +28,25 @@ function isEmpty(obj) {
   return Object.keys(obj).length === 0;
 }
 
+function sendTo(res, rank, username) {
+  switch (rank.toLowerCase()) {
+    case "executive":
+      res.render("pages/exepanel", {
+        rank: rank,
+        username: username
+      })
+
+      break;
+
+    default:
+      res.render("pages/panel", {
+        rank: rank,
+        username: username
+      })
+      break;
+  }
+}
+
 // use res.render to load up an ejs view file
 
 router.get('/', function(req, res) {
@@ -47,10 +66,7 @@ router.get('/', function(req, res) {
         res.render("pages/index");
       }
 
-      res.render("pages/panel", {
-        rank: user[1],
-        username: user[0]
-      })
+      sendTo(res, user[1], user[0]);
 
     })
   }
@@ -77,10 +93,8 @@ router.post('/panel', function(req, res) {
 
         res.cookie("verify", hash(password));
 
-        res.render("pages/panel", {
-          rank: user[2],
-          username: user[0]
-        })
+        sendTo(res, user[2], user[0]);
+
       } else {
         res.render("pages/index");
       }

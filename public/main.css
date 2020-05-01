@@ -1,3 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+html {
+  overflow-x: hidden;
+}
+
+/*
+===========================
+Login/Home
+===========================
+*/
 
 .loginForm {
   margin-top: 20px;
@@ -8,4 +21,72 @@
   margin: 10px;
   padding: 5px;
   display: block;
+}
+
+/*
+===========================
+Navbar
+===========================
+*/
+
+.navbar-dark {
+  background-color: #4c88f6!important;
+}
+
+/*
+===========================
+Container
+===========================
+*/
+
+.container-executive {
+  border: 1px solid black;
+  border-top: 1px solid #ff0505!important;
+}
+
+.container-designer {
+  border: 1px solid black;
+  border-top: 1px solid #8552aa!important;
+}
+
+.container-developer {
+  border: 1px solid black;
+  border-top: 1px solid #1cb389!important;
+}
+
+.container-artist {
+  border: 1px solid black;
+  border-top: 1px solid #3490c2!important;
+}
+
+/*
+===========================
+Card
+===========================
+*/
+
+.title {
+  text-decoration: bold;
+  font-size: 25px;
+  font-family: 'Titillium Web', sans-serif;
+}
+
+.card {
+  border: 2px solid lightgray;
+  border-top: 2px solid #4c88f6;
+}
+
+.card-header {
+  background-color: #4c88f6;
+  padding: 20px;
+  color: white;
+  font-size: 36px;
+  margin-bottom: -10px;
+  font-family: 'Titillium Web', sans-serif;
+}
+
+.card-body {
+  font-family: 'Titillium Web', sans-serif;
+  border-bottom: 2px solid lightgray;
+  background-color: white;
 }

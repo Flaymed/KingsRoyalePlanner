@@ -7,6 +7,7 @@ var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('./routes/private/main.db');
 
 db.run("CREATE TABLE IF NOT EXISTS accounts(username VARCHAR, password VARCHAR, rank VARCHAR)");
+db.run("CREATE TABLE IF NOT EXISTS tasks(rank VARCHAR, status INT, name VARCHAR)");
 console.log("Connected to the database!");
 
 const main = require('./routes/main');
