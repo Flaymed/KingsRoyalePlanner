@@ -4,6 +4,21 @@
     <%- include('../partials/header') -%>
   </head>
   <body>
-    test
+    <div class="row border mx-auto mt-5 rounded shadow w-25 justify-content-center">
+
+      <div class="col-sm-6">
+        <form class="loginForm" action="/panel" method="post">
+          <input class="input" name="user[name]" placeholder="Username" type="text">
+          <input class="input" name="user[pass]" placeholder="Password" type="password">
+          <input class="ml-2 btn btn-primary" type="submit">
+        </form>
+      </div>
+
+      <div class="col-sm-6">
+        <img src="./images/KingsRoyaleLogo.png" alt="logo" width="75%" class="mt-2">
+      </div>
+
+    </div>
+
   </body>
 </html>
