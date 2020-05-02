@@ -140,9 +140,38 @@ router.get('/staff', function(req, res) {
       res.render('pages/staff');
 
     })
+
   }
 
-});
+})
+
+router.get('/tasks/:rank?', function(req, res) {
+
+  let rank = req.params.rank;
+  let cookie = req.cookies.verify;
+  let user = [];
+
+  if (cookie == undefined || cookie == null) {
+    res.render('pages/index');
+  } else {
+    db.each("SELECT * FROM accounts WHERE password=?", [cookie], (error, data) => {
+      if (error) throw error;
+
+      user.push(data.username, data.rank);
+    }, () => {
+      if (user == '') {
+        res.render('pages/index');
+      }
+
+      res.render('pages/tasks', {
+        rank: rank
+      });
+
+    })
+  }
+
+})
+
 
 
 module.exports = router

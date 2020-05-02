@@ -55,4 +55,18 @@ router.get('/tasks/create/:name?/:rank?', function(req, res) {
   res.sendStatus(1000);
 })
 
+
+router.get('/staff', function(req, res) {
+  let staff = [];
+
+  db.each("SELECT * FROM accounts", (error, member) => {
+    if (error) throw error;
+
+    staff.push([member.username, member.rank])
+  }, () => {
+    res.send(staff);
+  })
+
+})
+
 module.exports = router

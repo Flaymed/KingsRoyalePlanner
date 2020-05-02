@@ -35,7 +35,18 @@
           STAFF
         </div>
         <div class="card-body">
-          test test
+
+          <div class="row justify-content-center">
+
+            <div class="col-sm-6 mt-3">
+              <div class="p-3 border-executive">
+                <h1 class="title-staff mb-1 pb-2">Flaymed</h1>
+                Rank: EXECUTIVE
+              </div>
+            </div>
+
+          </div>
+
         </div>
       </div>
     </div>
@@ -43,5 +54,12 @@
   </body>
 
   <%- include('../partials/footer') -%>
+  <script>
+
+  window.addEventListener("load", function(event) {
+    getStaff();
+  })
+
+  </script>
 
 </html>

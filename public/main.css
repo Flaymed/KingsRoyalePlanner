@@ -39,22 +39,22 @@ Container
 ===========================
 */
 
-.container-executive {
+.border-executive {
   border: 1px solid black;
   border-top: 1px solid #ff0505!important;
 }
 
-.container-designer {
+.border-designer {
   border: 1px solid black;
   border-top: 1px solid #8552aa!important;
 }
 
-.container-developer {
+.border-developer {
   border: 1px solid black;
   border-top: 1px solid #1cb389!important;
 }
 
-.container-artist {
+.border-artist {
   border: 1px solid black;
   border-top: 1px solid #3490c2!important;
 }
@@ -89,4 +89,25 @@ Card
   font-family: 'Titillium Web', sans-serif;
   border-bottom: 2px solid lightgray;
   background-color: white;
+}
+
+.title-staff {
+  border-bottom: 1px solid lightgray;
+}
+
+/*
+===========================
+Lists
+===========================
+*/
+
+.tasks {
+  list-style-type: none;
+}
+
+.task-item {
+  padding: 4px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid lightgray
 }
