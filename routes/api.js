@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 var uuid = require('uuid-random');
 var hash = require('object-hash');
+var short = require('short-uuid');
 
 //Sqlite connection
 var sqlite3 = require('sqlite3').verbose();
@@ -39,18 +40,20 @@ router.get('/tasks/:rank?', function(req, res) {
   db.each("SELECT * FROM tasks WHERE rank=?", [rank], (error, task) => {
     if (error) throw error;
 
-    tasks.push([task.name, task.status]);
+    tasks.push([task.name, task.description, task.status, task.id, task.rank]);
   }, () => {
     res.send(tasks);
   })
 
 })
 
-router.get('/tasks/create/:name?/:rank?', function(req, res) {
-  let name = req.parmas.name;
-  let rank = req.parmas.rank;
+router.post('/tasks/create/:rank?', function(req, res) {
+  let name = req.body.task.name;
+  let rank = req.params.rank;
+  let desc = req.params.desc;
+  let id = short.generate();
 
-  db.run("INSERT INTO tasks (rank, status, name) VALUES (?, ?, ?)", [name, 0, rank]);
+  db.run("INSERT INTO tasks (rank, status, name, description, id) VALUES (?, ?, ?, ?, ?)", [name, 0, rank, desc, id]);
 
   res.sendStatus(1000);
 })

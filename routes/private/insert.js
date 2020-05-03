@@ -1,6 +1,7 @@
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('./main.db');
 var hash = require('object-hash');
+var short = require('short-uuid');
 
 let username = "Flaymed";
 let password = hash("D5r8e2w5!");
@@ -25,4 +26,8 @@ function getUser(username) {
   })
 }
 
-getUser("Michel");
+function clearTable() {
+  db.run("DROP TABLE IF EXISTS tasks");
+}
+
+console.log(short.generate());
