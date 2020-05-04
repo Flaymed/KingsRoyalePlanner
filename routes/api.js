@@ -8,8 +8,6 @@ var short = require('short-uuid');
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('./routes/private/main.db');
 
-
-
 function setRank(username, rank) {
   db.run("UPDATE accounts SET rank=? WHERE username=?", [rank, username]);
 }
@@ -126,6 +124,37 @@ router.get('/tasks/delete/:id?', function(req, res) {
 
 })
 
+
+router.post('/createUser', function(req, res) {
+
+  let username = req.body.user.name;
+  let password = req.body.user.pass;
+  let rank = req.body.user.rank.toLowerCase();
+
+  if (cookie == undefined || cookie == null) {
+    res.render('pages/index');
+  } else {
+    db.each("SELECT * FROM accounts WHERE password=?", [cookie], (error, data) => {
+      if (error) throw error;
+
+      user.push(data.username, data.rank);
+    }, () => {
+      if (user == '') {
+        res.render('pages/index');
+      }
+
+      if (user[1].toLowerCase() !== "executive") {
+        res.render('pages/index')
+      }
+
+      createUser(username, password, rank);
+      res.render('pages/staff');
+
+    })
+
+  }
+
+})
 
 router.get('/staff', function(req, res) {
   let staff = [];

@@ -51,6 +51,38 @@
       </div>
     </div>
 
+    <button class="btn btn-success ml-5 mt-5 mx-auto" data-toggle="modal" data-target="#newStaff">New Staff</button>
+
+    <!-- The Modal -->
+    <div class="modal fade" id="newStaff">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">New Staff Member</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <form method="post" action="/createUser">
+              <input class="input" name="user[name]" placeholder="Username">
+              <input class="input" name="user[pass]" placeholder="Password">
+              <input class="input" name="user[rank]" placeholder="Rank">
+              <input class="btn btn-success ml-2" type="submit" value="Create">
+            </form>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
   </body>
 
   <%- include('../partials/footer') -%>
