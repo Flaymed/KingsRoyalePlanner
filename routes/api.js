@@ -50,12 +50,80 @@ router.get('/tasks/:rank?', function(req, res) {
 router.post('/tasks/create/:rank?', function(req, res) {
   let name = req.body.task.name;
   let rank = req.params.rank;
-  let desc = req.params.desc;
+  let desc = req.body.task.desc;
   let id = short.generate();
 
-  db.run("INSERT INTO tasks (rank, status, name, description, id) VALUES (?, ?, ?, ?, ?)", [name, 0, rank, desc, id]);
+  let cookie = req.cookies.verify;
+  let user = [];
 
-  res.sendStatus(1000);
+  if (cookie == undefined || cookie == null) {
+    res.render('pages/index');
+  } else {
+    db.each("SELECT * FROM accounts WHERE password=?", [cookie], (error, data) => {
+      if (error) throw error;
+
+      user.push(data.username, data.rank);
+    }, () => {
+      if (user == '') {
+        res.render('pages/index');
+      }
+
+      db.run("INSERT INTO tasks (rank, status, name, description, id) VALUES (?, ?, ?, ?, ?)", [rank, 0, name, desc, id]);
+
+      res.render('pages/tasks', {
+        rank: rank
+      });
+
+    })
+  }
+})
+
+router.get('/tasks/promote/:id?/:status?', function(req, res) {
+  let id = req.params.id;
+  let status = req.params.status;
+
+  if (cookie == undefined || cookie == null) {
+    res.render('pages/index');
+  } else {
+    db.each("SELECT * FROM accounts WHERE password=?", [cookie], (error, data) => {
+      if (error) throw error;
+
+      user.push(data.username, data.rank);
+    }, () => {
+      if (user == '') {
+        res.render('pages/index');
+      }
+
+      db.run("UPDATE tasks SET status=? WHERE id=?", [status, id]);
+      res.sendStatus(200);
+
+    })
+  }
+
+
+})
+
+router.get('/tasks/delete/:id?', function(req, res) {
+  let id = req.params.id;
+
+  if (cookie == undefined || cookie == null) {
+    res.render('pages/index');
+  } else {
+    db.each("SELECT * FROM accounts WHERE password=?", [cookie], (error, data) => {
+      if (error) throw error;
+
+      user.push(data.username, data.rank);
+    }, () => {
+      if (user == '') {
+        res.render('pages/index');
+      }
+
+      db.run("DELETE FROM tasks WHERE id=?", [id]);
+      res.sendStatus(200);
+
+    })
+  }
+
 })
 
 

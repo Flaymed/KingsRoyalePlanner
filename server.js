@@ -24,7 +24,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 app.use('/', main);
-app.use('/api', api);
+app.use('/api/', api);
 
 app.listen(8000, () => {
   console.log("App is running on port 8000!");

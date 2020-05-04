@@ -23,6 +23,10 @@ Login/Home
   display: block;
 }
 
+.input-long {
+  width: 95%;
+}
+
 /*
 ===========================
 Navbar

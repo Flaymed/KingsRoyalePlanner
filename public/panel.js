@@ -17,19 +17,7 @@ class Task {
   upgrade() {
 
     //Remove element
-    switch (this.status) {
-      case 0:
-        $("#notstarted").remove(`#${this.id}`);
-        break;
-
-      case 1:
-        $("#notstarted").remove(`#${this.id}`);
-        break;
-
-      case 2:
-        $("#notstarted").remove(`#${this.id}`);
-        break;
-    }
+    $(`#${this.id}`).remove();
 
     this.status += 1;
 
@@ -47,11 +35,29 @@ class Task {
       //Removed case 0 because nothing gets advance to 0/
 
       case 1:
-        $("#notstarted").append(append);
+        $("#inprogress").append(append);
         break;
 
       case 2:
-        $("#notstarted").append(append);
+        $("#finished").append(append);
+        break;
+
+      case 3 || 4 || 5:
+        $(`#${this.id}`).remove();
+
+        //TODO DELETE FROM SERVER
+
+        $.get(`/api/tasks/delete/${this.id}`, function(code) {
+          if (code == 0 || code.toLowerCase() == "ok") {
+            swal({
+              title: "Deleted",
+              text: 'Task deleted',
+              icon: 'success',
+              button: 'Ok'
+            })
+          }
+        })
+
         break;
     }
 
@@ -110,13 +116,7 @@ function getServerTasks(rank) {
   })
 }
 
-function createTask() {
-  let form = document.getElementById("createTask");
-
-  //Subtract one to exclude the submit button
-  for (let i = 0; i < form.length - 1; i++) {
-    let input = form.elements[i].value;
-  }
+function refreshTasks() {
 
 }
 
