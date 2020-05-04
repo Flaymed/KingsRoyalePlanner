@@ -4,7 +4,7 @@ var hash = require('object-hash');
 var short = require('short-uuid');
 
 let username = "Flaymed";
-let password = hash("D5r8e2w5!");
+let password = "no pass for u";
 let rank = "executive";
 
 let user = [];
