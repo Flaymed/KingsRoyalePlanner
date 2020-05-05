@@ -128,10 +128,12 @@ function getStaff() {
           <div class="col-sm-6 mt-3">
             <div class="p-3 border-${member[1].toLowerCase()}">
               <h1 class="title-staff mb-1 pb-2">${member[0]}</h1>
-              Rank: ${member[1]}
+              Rank: ${member[1].toUpperCase()}
             </div>
           </div>
           `;
+
+        $('#staff').append(card);
       })
     })
   })

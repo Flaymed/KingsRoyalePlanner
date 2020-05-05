@@ -16,13 +16,6 @@ function deleteUser(username) {
   db.run("DELETE FROM accounts WHERE username=?", [username]);
 }
 
-function createUser(username, password, rank) {
-  let passHash = hash(password);
-
-  db.run("INSERT INTO accounts (username, password, rank) VALUES (?, ?, ?)", [username, passHash, rank]);
-
-}
-
 function isEmpty(obj) {
   return Object.keys(obj).length === 0;
 }
@@ -131,6 +124,9 @@ router.post('/createUser', function(req, res) {
   let password = req.body.user.pass;
   let rank = req.body.user.rank.toLowerCase();
 
+  let cookie = req.cookies.verify;
+  let user = [];
+
   if (cookie == undefined || cookie == null) {
     res.render('pages/index');
   } else {
@@ -147,7 +143,9 @@ router.post('/createUser', function(req, res) {
         res.render('pages/index')
       }
 
-      createUser(username, password, rank);
+      let passHash = hash(password);
+
+      db.run("INSERT INTO accounts (username, password, rank) VALUES (?, ?, ?)", [username, passHash, rank]);
       res.render('pages/staff');
 
     })

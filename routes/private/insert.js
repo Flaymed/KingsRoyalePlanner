@@ -9,25 +9,14 @@ let rank = "executive";
 
 let user = [];
 
-function getUser(username) {
-  let user = [];
+function getStaff() {
 
-  db.each("SELECT * FROM accounts WHERE username=?", [username], (err, data) => {
+  db.each("SELECT * FROM accounts", (err, data) => {
     if (err) throw err;
 
-    user.push(data.username, data.password, data.rank);
+    console.log(data);
 
-  }, () => {
-    if (user == '') {
-      console.log("code 1");
-    } else {
-      console.log(user[2]);
-    }
-  })
+  });
 }
 
-function clearTable() {
-  db.run("DROP TABLE IF EXISTS tasks");
-}
-
-console.log(short.generate());
+getStaff()

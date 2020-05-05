@@ -36,14 +36,7 @@
         </div>
         <div class="card-body">
 
-          <div class="row justify-content-center">
-
-            <div class="col-sm-6 mt-3">
-              <div class="p-3 border-executive">
-                <h1 class="title-staff mb-1 pb-2">Flaymed</h1>
-                Rank: EXECUTIVE
-              </div>
-            </div>
+          <div class="row justify-content-center" id="staff">
 
           </div>
 
@@ -66,7 +59,7 @@
 
           <!-- Modal body -->
           <div class="modal-body">
-            <form method="post" action="/createUser">
+            <form method="post" action="/api/createUser">
               <input class="input" name="user[name]" placeholder="Username">
               <input class="input" name="user[pass]" placeholder="Password">
               <input class="input" name="user[rank]" placeholder="Rank">
