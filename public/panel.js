@@ -22,7 +22,7 @@ class Task {
     this.status += 1;
 
     let append = `
-    <li class="task-item" id="${this.id}">
+    <li class="task-item w-long" id="${this.id}">
       <h2 class="task-name">${this.name}</h2>
       <div class="task-desc">${this.desc}</div>
       <button class="btn btn-primary mt-4 mb-3" onclick="upgrade('${this.id}')">Next</button>
@@ -82,7 +82,7 @@ function getServerTasks(rank) {
       tasks.forEach( function(task) {
 
         let append = `
-        <li class="task-item" id="${task[3]}">
+        <li class="task-item w-long" id="${task[3]}">
           <h2 class="task-name">${task[0]}</h2>
           <div class="task-desc">${task[1]}</div>
           <button class="btn btn-primary mt-4 mb-3" onclick="upgrade('${task[3]}')">Next</button>

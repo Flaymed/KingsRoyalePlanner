@@ -135,3 +135,7 @@ Lists
 .complete {
   color: green;
 }
+
+.w-long {
+  width: 100%;
+}
